@@ -32,8 +32,7 @@
     "type:check": "tsc",
     "lint": "eslint --ext .tsx,.ts .",
     "prettier": "prettier . --ignore-path .gitignore",
-    "format:check": "prettier . --ignore-path .gitignore --check",
-    "format:fix": "prettier . --ignore-path .gitignore --write",
+    "format": "prettier . --ignore-path .gitignore --write",
     "validate": "run-p lint type:check format:check",
     "prepare": "husky install"
   },
