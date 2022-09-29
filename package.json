@@ -34,7 +34,6 @@
     "lint": "eslint --ext .tsx,.ts .",
     "prettier": "prettier . --ignore-path .gitignore",
     "format": "prettier . --ignore-path .gitignore --write",
-    "validate": "run-p lint type:check format:check",
     "prepare": "husky install"
   },
   "eslintConfig": {
