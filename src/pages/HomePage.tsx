@@ -1,7 +1,13 @@
 import React from 'react'
 
+import PokemonCard from '../components/PokemonCard'
+
 function HomePage() {
-  return <div>HomePage</div>
+  return (
+    <div>
+      <PokemonCard />
+    </div>
+  )
 }
 
 export default HomePage
