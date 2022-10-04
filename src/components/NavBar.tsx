@@ -3,13 +3,6 @@ import PokeLogo from '../assets/navbar-logo.svg'
 
 import data from './mockData'
 
-interface Pokemon {
-  id: number
-  name: string
-}
-
-type PokeArr = Array<Pokemon>
-
 function NavBar() {
   const [searchModal, setSearchModal] = useState('hidden')
   const [searchList, setSearchList] = useState(data)
