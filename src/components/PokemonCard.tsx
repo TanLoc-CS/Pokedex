@@ -21,7 +21,7 @@ function renderPokeTypes(type: string) {
 
 function PokemonCard() {
   return (
-    <div className="w-[300px] h-[360px] px-4 py-4 bg-white hover:bg-gray-50 hover:-translate-y-1 rounded-lg flex flex-col justify-start items-center">
+    <div className="w-[300px] h-[360px] px-4 py-4 bg-white hover:bg-poke-golden-rod hover:-translate-y-2 rounded-lg flex flex-col justify-start items-center">
       <div className="bg-slate-300">
         <img
           src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png"
