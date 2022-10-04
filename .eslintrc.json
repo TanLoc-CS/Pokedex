@@ -36,6 +36,7 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
-    "prefer-template": "off"
+    "prefer-template": "off",
+    "react/jsx-props-no-spreading": ["off"]
   }
 }
