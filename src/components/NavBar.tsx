@@ -24,7 +24,7 @@ function NavBar() {
   }
 
   return (
-    <div className="md:w-full md:h-[80px] bg-poke-fire-brick md:flex md:flex-row justify-start items-center">
+    <div className="md:w-full md:h-[80px] bg-poke-fire-brick md:flex md:flex-row justify-start items-center fixed">
       <img
         src={PokeLogo}
         alt="logo"

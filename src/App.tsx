@@ -1,12 +1,11 @@
 import { Route, Routes } from 'react-router'
 
-import './App.css'
 import routes from './routes'
 import NavBar from './components/NavBar'
 
 function App() {
   return (
-    <div className="App">
+    <div className="md:w-full md:h-[1080px] bg-poke-lemon-yellow">
       <NavBar />
       <Routes>
         {routes.map((route) => {
