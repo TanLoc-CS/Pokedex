@@ -10,7 +10,7 @@ const routes = [
     withNavBar: true,
   },
   {
-    path: '/PokemonInfo',
+    path: '/pokemon',
     component: PokemonInfo,
     withNavBar: true,
   },

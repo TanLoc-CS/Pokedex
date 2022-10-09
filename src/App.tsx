@@ -5,7 +5,7 @@ import NavBar from './components/NavBar'
 
 function App() {
   return (
-    <div className="md:w-full md:h-[1080px] bg-poke-lemon-yellow">
+    <div className="md:w-full md:h-[980px] bg-poke-lemon-yellow">
       <NavBar />
       <Routes>
         {routes.map((route) => {

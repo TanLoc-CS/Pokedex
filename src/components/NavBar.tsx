@@ -24,14 +24,15 @@ function NavBar() {
   }
 
   return (
-    <div className="md:w-full md:h-[80px] bg-poke-fire-brick md:flex md:flex-row justify-start items-center fixed">
-      <img
-        src={PokeLogo}
-        alt="logo"
-        className="w-[160px] h-[60px] rounded-2xl mx-4"
-      />
-
-      <form className="w-[360px] h-[56px] bg-white rounded-2xl flex flex-col justify-center items-center">
+    <div className="w-full md:h-[80px] bg-poke-fire-brick md:flex md:flex-row justify-start items-center fixed">
+      <a href="/">
+        <img
+          src={PokeLogo}
+          alt="logo"
+          className="w-[160px] h-[60px] rounded-2xl mx-4"
+        />
+      </a>
+      <form className="md:w-[360px] h-[56px] bg-white rounded-2xl flex flex-col justify-center items-center">
         <input
           type="text"
           placeholder="Search"
@@ -49,8 +50,8 @@ function NavBar() {
           {searchList &&
             searchList.map((pokemon) => (
               <div
-                className="md:w-[332px] h-12 hover:bg-poke-lemon-yellow text-left pl-8"
-                key={pokemon.name}
+                className="md:w-[332px] h-12 hover:bg-poke-lemon-yellow text-left pl-8 text-lg"
+                key={pokemon.name + Math.random()}
               >
                 {pokemon.name}
               </div>
