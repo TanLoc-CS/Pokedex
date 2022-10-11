@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/material": "^5.8.7",
+    "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
@@ -10,10 +14,17 @@
     "@types/node": "^16.11.43",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "@types/react-redux": "^7.1.24",
+    "axios": "^0.27.2",
+    "graphql-request": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.7.4",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-redux": "^8.0.4",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.4.1",
+    "react-scripts": "^5.0.1",
+    "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -24,9 +35,7 @@
     "type:check": "tsc",
     "lint": "eslint --ext .tsx,.ts .",
     "prettier": "prettier . --ignore-path .gitignore",
-    "format:check": "prettier . --ignore-path .gitignore --check",
-    "format:fix": "prettier . --ignore-path .gitignore --write",
-    "validate": "run-p lint type:check format:check",
+    "format": "prettier . --ignore-path .gitignore --write",
     "prepare": "husky install"
   },
   "eslintConfig": {
@@ -50,6 +59,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
+    "autoprefixer": "^10.4.7",
     "eslint": "^8.19.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
@@ -61,10 +71,12 @@
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.7.1"
+    "postcss": "^8.4.14",
+    "prettier": "^2.7.1",
+    "tailwindcss": "^3.1.6"
   },
   "lint-staged": {
-    "*.{tsx,ts}": "eslint --cache --fix",
+    "*.{tsx,ts}": "eslint --fix",
     "*.{js,css,md}": "prettier --write"
   }
 }
