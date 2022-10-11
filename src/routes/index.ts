@@ -1,17 +1,21 @@
-import React from 'react';
-
-const HomePage = React.lazy(() => import('../pages/HomePage'));
-const PokemonInfo = React.lazy(() => import('../pages/PokemonPage'));
+import HomePage from '../pages/HomePage';
+import PokemonPage from '../pages/PokemonPage';
+import PageNotFound from '../pages/PageNotFound';
 
 const routes = [
   {
-    path: '/',
+    path: '',
     component: HomePage,
     withNavBar: true,
   },
   {
-    path: '/pokemon',
-    component: PokemonInfo,
+    path: '/*',
+    component: PageNotFound,
+    withNavBar: true,
+  },
+  {
+    path: '/pokemon/:id',
+    component: PokemonPage,
     withNavBar: true,
   },
 ];

@@ -1,30 +1,45 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { GraphQLClient, gql } from 'graphql-request'
+
+import { PokedexGQL } from '../interface'
 import PokeLogo from '../assets/navbar-logo.svg'
 
-import data from './mockData'
+const PokeAPIquery = gql`
+  {
+    gen3_species: pokemon_v2_pokemonspecies(where: {}, order_by: { id: asc }) {
+      id
+      name
+    }
+  }
+`
 
 function NavBar() {
+  const [pokedex, setPokedex] = useState<PokedexGQL>([])
+  const [filteredData, setFilteredData] = useState<PokedexGQL>([])
   const [searchModal, setSearchModal] = useState('hidden')
-  const [searchList, setSearchList] = useState(data)
-
-  const filterData = (searchInput: string) => {
-    if (searchInput !== '') {
-      const filteredData = data.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(searchInput)
-      )
-      setSearchList(filteredData)
-    } else setSearchList(data)
+  const client = new GraphQLClient('https://beta.pokeapi.co/graphql/v1beta')
+  useEffect(() => {
+    client.request(PokeAPIquery).then((res) => {
+      setPokedex(res.gen3_species)
+    })
+  }, [])
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault()
+    const search = event.target.value
+    const newFilter = pokedex.filter(
+      (value) => value.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
+    )
+    if (search === '') setFilteredData(pokedex)
+    else setFilteredData(newFilter)
   }
 
-  const handleChange = async (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     e.preventDefault()
-    filterData(e.target.value)
+    setTimeout(() => setSearchModal('hidden'), 500)
   }
 
   return (
-    <div className="w-full md:h-[80px] bg-poke-fire-brick md:flex md:flex-row justify-start items-center fixed">
+    <div className="w-full md:h-[80px] bg-poke-fire-brick md:flex md:flex-row justify-start items-center fixed z-10">
       <a href="/">
         <img
           src={PokeLogo}
@@ -39,7 +54,7 @@ function NavBar() {
           className="w-[300px] h-[36px] outline-hidden bg-white focus:outline-none"
           onChange={(e) => handleChange(e)}
           onFocus={() => setSearchModal('block')}
-          onBlur={() => setSearchModal('hidden')}
+          onBlur={(e) => handleBlur(e)}
         />
         <div
           className={
@@ -47,14 +62,16 @@ function NavBar() {
             searchModal
           }
         >
-          {searchList &&
-            searchList.map((pokemon) => (
-              <div
-                className="md:w-[332px] h-12 hover:bg-poke-lemon-yellow text-left pl-8 text-lg"
-                key={pokemon.name + Math.random()}
-              >
-                {pokemon.name}
-              </div>
+          {filteredData &&
+            filteredData.map((pokemon) => (
+              <a href={`/pokemon/${pokemon.id}`} key={pokemon.name}>
+                <div
+                  className="md:w-[332px] h-8 hover:bg-poke-lemon-yellow text-left pl-8 text-lg"
+                  key={pokemon.name + Math.random()}
+                >
+                  {pokemon.name}
+                </div>
+              </a>
             ))}
         </div>
       </form>

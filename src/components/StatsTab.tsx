@@ -3,30 +3,47 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
 
-function StatsTab() {
-  const [tab, setTab] = useState<String>('stats')
+import { PokemonDetail } from '../interface'
 
-  const handleChange = (event: SyntheticEvent, newValue: String) => {
-    setTab(newValue)
-    console.log(newValue)
-  }
+interface Props {
+  data: PokemonDetail
+}
 
-  const renderProgressBar = (figure: any) => (
-    <div className="w-[600px] h-5 bg-gray-200 rounded-full dark:bg-gray-700">
-      <div className="h-5 text-xs font-medium text-blue-100 text-center bg-poke-saddle-brown bg-opacity-75 rounded-full dark:bg-blue-500 w-[190px]">
+const renderProgressBar = (figure: number, name: string) => {
+  const progressBarValue = `${Math.round((figure * 100) / 300)}%`
+
+  return (
+    <div
+      key={name}
+      className="w-[600px] h-5 bg-gray-200 rounded-full dark:bg-gray-700"
+    >
+      <div
+        className="h-5 text-xs font-medium text-blue-100 text-center bg-poke-saddle-brown bg-opacity-75 rounded-full dark:bg-blue-500"
+        style={{ width: `${progressBarValue}` }}
+      >
         {figure.toString() + '/300'}
       </div>
     </div>
   )
+}
 
-  const renderMove = () => (
-    <div className="w-[240px] h-[140px] bg-white rounded-lg shadow-lg overflow-auto">
-      {' '}
-      hh
-    </div>
-  )
+const renderMove = (name: string) => (
+  <div
+    key={name}
+    className="w-[240px] h-[140px] bg-white hover:bg-poke-saddle-brown hover:text-white rounded-lg shadow-lg overflow-auto flex flex-col justify-center items-center text-xl font-medium"
+  >
+    {name}
+  </div>
+)
 
-  console.log(tab)
+function StatsTab(pokemon: Props) {
+  const [tab, setTab] = useState<String>('stats')
+  const { data } = pokemon
+  const { stats, moves } = data
+  const handleChange = (event: SyntheticEvent, newValue: String) => {
+    setTab(newValue)
+  }
+
   return (
     <>
       <Box className="mt-8 mr-[1360px]">
@@ -35,6 +52,7 @@ function StatsTab() {
           onChange={handleChange}
           textColor="inherit"
           aria-label="inherit tabs"
+          className="bg-poke-lemon-yellow rounded-lg"
         >
           <Tab value="stats" label="Stats" />
           <Tab value="moves" label="Moves" />
@@ -55,12 +73,9 @@ function StatsTab() {
           <p className="h-6 font-medium">SPEED</p>
         </div>
         <div className="h-[200px] flex flex-col justify-between items-start ml-8">
-          {renderProgressBar(45)}
-          {renderProgressBar(100)}
-          {renderProgressBar(22)}
-          {renderProgressBar(150)}
-          {renderProgressBar(190)}
-          {renderProgressBar(100)}
+          {stats.map((stat) =>
+            renderProgressBar(stat.base_stat, stat.stat.name)
+          )}
         </div>
       </div>
       <div
@@ -69,25 +84,7 @@ function StatsTab() {
           (tab === 'stats' ? 'hidden' : 'block')
         }
       >
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
-        {renderMove()}
+        {moves.map((move) => renderMove(move.move.name))}
       </div>
     </>
   )
