@@ -3,18 +3,10 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 import { PokemonProps, Types } from '../interface/index'
+import colorPicker from '../utils/pokemonColor'
 
 function renderPokeTypes(type: string) {
-  let bgColor = 'bg-white'
-  switch (type) {
-    case 'type 1':
-      bgColor = 'bg-indigo-200'
-      break
-
-    default:
-      bgColor = ' bg-amber-200'
-      break
-  }
+  const bgColor = colorPicker(type)
 
   return (
     <div
