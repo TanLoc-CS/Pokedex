@@ -29,6 +29,10 @@
         "tsx": "never"
       }
     ],
+    "arrow-body-style": "off",
+    "react/function-component-definition": "off",
+    "security/detect-object-injection": "off",
+    "import/prefer-default-export": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": "error",
     "no-unused-vars": "off",

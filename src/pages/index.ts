@@ -1,6 +1,6 @@
-import HomePage from '../pages/HomePage';
-import PokemonPage from '../pages/PokemonPage';
-import PageNotFound from '../pages/PageNotFound';
+import HomePage from './HomePage';
+import PageNotFound from './PageNotFound';
+import PokemonPage from './PokemonPage';
 
 const routes = [
   {
