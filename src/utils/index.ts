@@ -7,6 +7,10 @@ export const addLeadingZeros = (num: number) => {
   return String(num).padStart(totalLength, '0')
 }
 
+export const capitalize = (name: string) => {
+  return name.charAt(0).toUpperCase() + name.slice(1);
+}
+
 export const colorPicker = (type: string) => {
   switch (type) {
     case 'normal':
