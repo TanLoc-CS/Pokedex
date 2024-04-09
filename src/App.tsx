@@ -6,7 +6,7 @@ import './index.css'
 
 function App() {
   return (
-    <div className="md:w-full h-screen bg-poke-lemon-yellow">
+    <div className="w-screen h-screen bg-poke-lemon-yellow">
       <NavBar />
       <Routes>
         {routes.map((route) => {

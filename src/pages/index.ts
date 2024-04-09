@@ -1,6 +1,6 @@
 import HomePage from './HomePage';
-import PokemonPage from './PokemonPage';
 import PageNotFound from './PageNotFound';
+import PokemonPage from './PokemonPage';
 
 const routes = [
   {

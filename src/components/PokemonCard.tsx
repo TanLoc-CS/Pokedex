@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import { PokemonProps } from '../interface/index'
-import { colorPicker, addLeadingZeros } from '../utils'
+import { colorPicker, addLeadingZeros, capitalize } from '../utils'
 import { usePokemon } from '../hook/usePokemon'
 
 
@@ -42,7 +42,7 @@ function PokemonCard(props: PokemonProps) {
         </div>
       </Link>
       <div className="w-[240px] h-10 text-xl text-start font-medium">
-        {data.name === undefined ? 'undefined' : data.name}
+        {data.name === undefined ? 'undefined' : capitalize(data.name as string)}
       </div>
       <div className="w-[240px] h-6 flex flex-row justify-start items-center">
         {pokemonCard.types === undefined
