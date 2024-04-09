@@ -1,4 +1,13 @@
-const colorPicker = (type: string) => {
+export const addLeadingZeros = (num: number) => {
+  const totalLength = 3
+  if (num < 0) {
+    const withoutMinus = String(num).slice(1)
+    return '-' + withoutMinus.padStart(totalLength, '0')
+  }
+  return String(num).padStart(totalLength, '0')
+}
+
+export const colorPicker = (type: string) => {
   switch (type) {
     case 'normal':
       return 'bg-normal'
@@ -41,5 +50,3 @@ const colorPicker = (type: string) => {
       return 'bg-black';
   }
 }
-
-export default colorPicker

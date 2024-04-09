@@ -30,6 +30,12 @@ export interface Type {
 
 export type Types = Array<Type>
 
+export interface PokemonCard {
+  image: string,
+  id: number,
+  types: Types;
+}
+
 export type PokemonId = { id: string }
 
 export interface PokemonDetail {

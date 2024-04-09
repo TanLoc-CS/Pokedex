@@ -1,30 +1,13 @@
-import axios from 'axios'
-import { lazy, useEffect, useState } from 'react'
+import { lazy } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-import { Pokedex } from '../interface/index'
 import Banner from '../assets/pokemon-logo.svg'
+import { usePokemon } from '../hook/usePokemon';
 
 const LazyPokemonCard = lazy(() => import('../components/PokemonCard'))
 
 function HomePage() {
-  const [pokedex, setPokedex] = useState<Pokedex>([])
-  const [offset, setOffset] = useState(15)
-  const limit = 15
-  useEffect(() => {
-    axios.get('https://pokeapi.co/api/v2/pokemon?limit=15').then((res) => {
-      setPokedex(res.data.results)
-    })
-  }, [])
-  if (!pokedex) return <> </>
-  const fetchMoreData = () => {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon?limit=${limit + offset}`)
-      .then((res) => {
-        setPokedex(res.data.results)
-        setOffset(limit + offset)
-      })
-  }
+  const { pokedex, offset, fetchMorePokemon } = usePokemon();
 
   return (
     <div className="md:w-full md:h-fit bg-poke-lemon-yellow flex flex-col justify-start items-center">
@@ -39,7 +22,7 @@ function HomePage() {
         dataLength={offset}
         hasMore
         loader={<h4>Loading...</h4>}
-        next={fetchMoreData}
+        next={fetchMorePokemon}
       >
         {pokedex.map((e) => (
           <LazyPokemonCard key={e.name} data={e} />

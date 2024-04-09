@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
-import axios from 'axios'
+import { useEffect } from 'react';
+import { useParams } from 'react-router';
 
-import { PokemonId, Types, PokemonDetail } from '../interface'
-import colorPicker from '../utils/pokemonColor'
-import StatsTab from '../components/StatsTab'
+import { PokemonId, Types } from '../interface';
+import { colorPicker } from '../utils';
+import StatsTab from '../components/StatsTab';
+import { usePokemon } from '../hook/usePokemon';
 // import PageNotFound from './PageNotFound'
 
 const UNDEFINED_IMAGE =
@@ -41,14 +41,11 @@ function renderTypes(types: Types) {
 }
 
 function PokemonPage() {
-  const { id } = useParams<PokemonId>()
-  const [pokemon, setPokemon] = useState<PokemonDetail>()
+  const { id } = useParams<PokemonId>();
+  const { pokemon, getPokemonById } = usePokemon();
 
   useEffect(() => {
-    const url = 'https://pokeapi.co/api/v2/pokemon/' + id
-    axios.get(url).then((res) => {
-      setPokemon(res.data)
-    })
+    getPokemonById(id || '');
   }, [])
 
   return (
