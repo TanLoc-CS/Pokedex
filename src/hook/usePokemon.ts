@@ -56,7 +56,7 @@ export const usePokemon = () => {
 
     try {
       const res = await axios.get(baseUrl + `?limit=${offset}`);
-      console.log(res);
+
       setLoading(false);
       setPokedex(res.data.results)
       setOffset(offset + LIMIT);
